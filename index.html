@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel | Portfolio - ECE & CS Aspirant</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- DESIGN SYSTEM & CSS VARIABLES --- */
         :root {
             --bg-main: #0B0F19;
             --bg-card: #131A26;
-            --bg-nav: rgba(11, 15, 25, 0.95);
+            --bg-nav: rgba(11, 15, 25, 0.8);
             --primary: #3B82F6;
             --primary-glow: rgba(59, 130, 246, 0.15);
             --accent: #60A5FA;
             --text-main: #F3F4F6;
             --text-muted: #9CA3AF;
             --border: #222F43;
-            /* 使用系统自带的无网络依赖现代字体 */
-            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -37,6 +39,7 @@
             font-family: var(--font-sans);
             line-height: 1.6;
             overflow-x: hidden;
+            display: block !important; /* 确保防止外部网络阻塞导致的黑屏白屏 */
         }
 
         /* --- TYPOGRAPHY --- */
@@ -91,6 +94,8 @@
             width: 100%;
             z-index: 1000;
             background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             transition: var(--transition);
         }
@@ -250,8 +255,10 @@
             box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);
         }
 
-        .tech-cube .cube-icon {
+        .tech-cube i {
             font-size: 4rem;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
         }
 
         .tech-cube span {
@@ -310,7 +317,11 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
+        }
+
+        .academic-icon i {
             font-size: 1.5rem;
+            color: var(--primary);
         }
 
         .academic-card h3 {
@@ -351,6 +362,8 @@
 
         .achieve-badge {
             font-size: 2.5rem;
+            color: #FBBF24;
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
         }
 
         .achieve-text h3 {
@@ -412,6 +425,11 @@
             gap: 0.75rem;
         }
 
+        .activity-card h3 i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
         /* --- HOBBIES & PASSIONS --- */
         .hobbies-grid {
             display: grid;
@@ -438,6 +456,7 @@
 
         .hobby-icon {
             font-size: 2rem;
+            color: var(--accent);
             padding-top: 0.25rem;
         }
 
@@ -463,18 +482,18 @@
 
         .footer-socials {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .footer-socials a {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            text-decoration: none;
+            font-size: 1.3rem;
             transition: var(--transition);
         }
 
         .footer-socials a:hover {
             color: var(--primary);
+            transform: scale(1.1);
         }
 
         .footer-text {
@@ -526,8 +545,10 @@
     <!-- NAVIGATION BAR -->
     <nav>
         <div class="container nav-container">
-            <a href="#hero" class="logo">💻 DANIEL<span>.dev</span></a>
-            <div class="menu-toggle" id="mobile-menu-btn">☰</div>
+            <a href="#hero" class="logo"><i class="fa-solid fa-code"></i> DANIEL<span>.dev</span></a>
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#hero" class="nav-item active">Home</a></li>
                 <li><a href="#interests" class="nav-item">Academics</a></li>
@@ -546,13 +567,14 @@
                 <h1 class="hero-title">Engineering the Future at the Intersection of <span>Hardware & Software</span></h1>
                 <p class="hero-desc">Hi, I'm Daniel. A passionate tech enthusiast and developer dedicated to turning abstract, complex ideas into reality through rigorous code and precise electronic engineering.</p>
                 <div class="cta-group">
-                    <a href="#interests" class="btn btn-primary">Explore Portfolio →</a>
-                    <a href="mailto:your_email@example.com" class="btn btn-secondary">Get In Touch</a>
+                    <a href="#interests" class="btn btn-primary">Explore Portfolio <i class="fa-solid fa-arrow-right"></i></a>
+                    <!-- 1. 这里已经更新为您要求的 GitHub 链接 -->
+                    <a href="https://github.com/Daniel-h-j" target="_blank" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="tech-cube">
-                    <span class="cube-icon">💾</span>
+                    <i class="fa-solid fa-microchip"></i>
                     <span>System.init();</span>
                 </div>
             </div>
@@ -565,12 +587,16 @@
             <h2 class="section-title">Academic Framework</h2>
             <div class="academic-grid">
                 <div class="academic-card">
-                    <div class="academic-icon">⚡</div>
+                    <div class="academic-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
                     <h3>Electrical & Electronic Engineering</h3>
                     <p>Fascinated by hardware architecture, circuit designs, and embedded systems. I aim to explore how physical components manage signal processing and energy transmission to drive the next wave of smart computing systems.</p>
                 </div>
                 <div class="academic-card">
-                    <div class="academic-icon">⚙️</div>
+                    <div class="academic-icon">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
                     <h3>Computer Science</h3>
                     <p>Driven by complex algorithms, software architectures, and efficient data design. I strive to build intuitive applications, optimize algorithmic workflows, and bridge high-level abstract logic with computing efficiency.</p>
                 </div>
@@ -585,7 +611,7 @@
             <div class="achieve-container">
                 <div class="achieve-card">
                     <div class="achieve-info">
-                        <div class="achieve-badge">🏆</div>
+                        <div class="achieve-badge"><i class="fa-solid fa-trophy"></i></div>
                         <div class="achieve-text">
                             <h3>Euclid Mathematics Contest</h3>
                             <p>University of Waterloo // 2026</p>
@@ -595,7 +621,7 @@
                 </div>
                 <div class="achieve-card">
                     <div class="achieve-info">
-                        <div class="achieve-badge">🏆</div>
+                        <div class="achieve-badge"><i class="fa-solid fa-trophy"></i></div>
                         <div class="achieve-text">
                             <h3>Euclid Mathematics Contest</h3>
                             <p>University of Waterloo // 2025</p>
@@ -614,17 +640,17 @@
             <div class="activities-grid">
                 <div class="activity-card">
                     <h4>Creativity & Logic</h4>
-                    <h3>📦 Minecraft Club</h3>
+                    <h3><i class="fa-solid fa-cubes"></i> Minecraft Club</h3>
                     <p>Utilized sandbox systems to design complex procedural environments. Actively explored boolean operations, digital logic gates, and complex automated machinery using Redstone circuits, showcasing a foundational aptitude for digital electronics.</p>
                 </div>
                 <div class="activity-card">
                     <h4>Scientific Inquiry</h4>
-                    <h3>🧪 Chemistry Experiment Club</h3>
+                    <h3><i class="fa-solid fa-flask"></i> Chemistry Experiment Club</h3>
                     <p>Conducted rigorous chemical synthesis and analytical testing. Developed an acute sense for experimental precision, procedural lab safety protocols, and analytical data validation, proving an enduring dedication to scientific methods.</p>
                 </div>
                 <div class="activity-card">
                     <h4>Discipline & Harmony</h4>
-                    <h3>🏓 Table Tennis Club</h3>
+                    <h3><i class="fa-solid fa-table-tennis-paddle-ball"></i> Table Tennis Club</h3>
                     <p>Maintained high-intensity cognitive stamina, sharp tactical execution, and strategic teamwork. Balancing athletic conditioning with rigorous studies cultivated exceptional reflex speeds, absolute focus, and strong physical resilience.</p>
                 </div>
             </div>
@@ -637,14 +663,14 @@
             <h2 class="section-title">Creative Passions</h2>
             <div class="hobbies-grid">
                 <div class="hobby-card">
-                    <div class="hobby-icon">🎬</div>
+                    <div class="hobby-icon"><i class="fa-solid fa-clapperboard"></i></div>
                     <div>
                         <h3>Visual Arts & Animation</h3>
                         <p>Combining artistic narrative with digital media. Crafting engaging animations allows me to blend computational timelines, asset rendering, and visual aesthetics, capturing the artistic side of a tech developer.</p>
                     </div>
                 </div>
                 <div class="hobby-card">
-                    <div class="hobby-icon">🛠️</div>
+                    <div class="hobby-icon"><i class="fa-solid fa-laptop-code"></i></div>
                     <div>
                         <h3>Hardware Tinkering</h3>
                         <p>Constantly assembling custom computer configurations, troubleshooting firmware, and keeping pace with global consumer electronic trends and next-generation microprocessor milestones.</p>
@@ -658,9 +684,10 @@
     <footer>
         <div class="container footer-content">
             <div class="footer-socials">
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-                <a href="mailto:your_email@example.com">Email</a>
+                <!-- 2. 这里已经更新为您要求的 GitHub 链接 -->
+                <a href="https://github.com/Daniel-h-j" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:your_email@example.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
             <p class="footer-text">Designed & Programmed by Daniel © 2026. All Rights Reserved.</p>
         </div>
@@ -668,21 +695,27 @@
 
     <!-- INTERACTIVE JAVASCRIPT -->
     <script>
+        // --- MOBILE MENU INTERACTION ---
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
 
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            mobileMenuBtn.innerText = navMenu.classList.contains('active') ? '✕' : '☰';
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                mobileMenuBtn.innerText = '☰';
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-xmark');
             });
         });
 
+        // --- ACTIVE LINK ON SCROLL DETECTOR ---
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item');
 
@@ -691,7 +724,7 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
                     current = section.getAttribute('id');
                 }
             });
