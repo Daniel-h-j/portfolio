@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel | Portfolio - ECE & CS Aspirant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* --- DESIGN SYSTEM & CSS VARIABLES --- */
         :root {
             --bg-main: #0B0F19;
             --bg-card: #131A26;
-            --bg-nav: rgba(11, 15, 25, 0.8);
+            --bg-nav: rgba(11, 15, 25, 0.95);
             --primary: #3B82F6;
             --primary-glow: rgba(59, 130, 246, 0.15);
             --accent: #60A5FA;
             --text-main: #F3F4F6;
             --text-muted: #9CA3AF;
             --border: #222F43;
-            --font-sans: 'Inter', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            /* 使用系统自带的无网络依赖现代字体 */
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -92,8 +91,6 @@
             width: 100%;
             z-index: 1000;
             background: var(--bg-nav);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             transition: var(--transition);
         }
@@ -154,3 +151,558 @@
             background: radial-gradient(circle at 80% 20%, var(--primary-glow) 0%, transparent 50%);
             border-bottom: 1px solid var(--border);
         }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-cube {
+            width: 280px;
+            height: 280px;
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            background: linear-gradient(135deg, rgba(19, 26, 38, 0.6) 0%, rgba(11, 15, 25, 0.8) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+
+        .tech-cube .cube-icon {
+            font-size: 4rem;
+        }
+
+        .tech-cube span {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        /* --- ACADEMIC INTERESTS --- */
+        .academic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .academic-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .academic-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .academic-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+        }
+
+        .academic-card:hover::before {
+            opacity: 1;
+        }
+
+        .academic-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .academic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* --- ACHIEVEMENTS --- */
+        .achieve-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .achieve-card {
+            background: linear-gradient(90deg, var(--bg-card) 0%, rgba(19, 26, 38, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .achieve-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border-color: var(--accent);
+        }
+
+        .achieve-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .achieve-badge {
+            font-size: 2.5rem;
+        }
+
+        .achieve-text h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .achieve-text p {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--accent);
+        }
+
+        .achieve-tag {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--primary);
+            font-family: var(--font-mono);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* --- ACTIVITIES & CLUBS --- */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .activity-card h4 {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .activity-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* --- HOBBIES & PASSIONS --- */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .hobby-card {
+            background: linear-gradient(180deg, var(--bg-card) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .hobby-card:hover {
+            border-color: var(--border);
+            background: var(--bg-card);
+            box-shadow: inset 0 0 15px rgba(255,255,255,0.02);
+        }
+
+        .hobby-icon {
+            font-size: 2rem;
+            padding-top: 0.25rem;
+        }
+
+        .hobby-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #070A10;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            color: var(--primary);
+        }
+
+        .footer-text {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-title { font-size: 3rem; }
+            .cta-group { justify-content: center; }
+            .tech-cube { margin: 2rem auto 0; }
+            
+            .academic-grid, .activities-grid, .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .achieve-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .achieve-tag { align-self: flex-end; }
+            
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 4.5rem; left: 0; width: 100%;
+                background: var(--bg-main);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                text-align: center;
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#hero" class="logo">💻 DANIEL<span>.dev</span></a>
+            <div class="menu-toggle" id="mobile-menu-btn">☰</div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#hero" class="nav-item active">Home</a></li>
+                <li><a href="#interests" class="nav-item">Academics</a></li>
+                <li><a href="#achievements" class="nav-item">Achievements</a></li>
+                <li><a href="#activities" class="nav-item">Activities</a></li>
+                <li><a href="#hobbies" class="nav-item">Passions</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-tag">Grade 11 // Tech Enthusiast & Creator</span>
+                <h1 class="hero-title">Engineering the Future at the Intersection of <span>Hardware & Software</span></h1>
+                <p class="hero-desc">Hi, I'm Daniel. A passionate tech enthusiast and developer dedicated to turning abstract, complex ideas into reality through rigorous code and precise electronic engineering.</p>
+                <div class="cta-group">
+                    <a href="#interests" class="btn btn-primary">Explore Portfolio →</a>
+                    <a href="mailto:your_email@example.com" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="tech-cube">
+                    <span class="cube-icon">💾</span>
+                    <span>System.init();</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACADEMIC INTERESTS SECTION -->
+    <section id="interests">
+        <div class="container">
+            <h2 class="section-title">Academic Framework</h2>
+            <div class="academic-grid">
+                <div class="academic-card">
+                    <div class="academic-icon">⚡</div>
+                    <h3>Electrical & Electronic Engineering</h3>
+                    <p>Fascinated by hardware architecture, circuit designs, and embedded systems. I aim to explore how physical components manage signal processing and energy transmission to drive the next wave of smart computing systems.</p>
+                </div>
+                <div class="academic-card">
+                    <div class="academic-icon">⚙️</div>
+                    <h3>Computer Science</h3>
+                    <p>Driven by complex algorithms, software architectures, and efficient data design. I strive to build intuitive applications, optimize algorithmic workflows, and bridge high-level abstract logic with computing efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Academic Distinctions</h2>
+            <div class="achieve-container">
+                <div class="achieve-card">
+                    <div class="achieve-info">
+                        <div class="achieve-badge">🏆</div>
+                        <div class="achieve-text">
+                            <h3>Euclid Mathematics Contest</h3>
+                            <p>University of Waterloo // 2026</p>
+                        </div>
+                    </div>
+                    <span class="achieve-tag">Certificate of Distinction (Top 25%)</span>
+                </div>
+                <div class="achieve-card">
+                    <div class="achieve-info">
+                        <div class="achieve-badge">🏆</div>
+                        <div class="achieve-text">
+                            <h3>Euclid Mathematics Contest</h3>
+                            <p>University of Waterloo // 2025</p>
+                        </div>
+                    </div>
+                    <span class="achieve-tag">Certificate of Distinction (Top 25%)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVITIES & CLUBS SECTION -->
+    <section id="activities">
+        <div class="container">
+            <h2 class="section-title">Leadership & Extracurriculars</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h4>Creativity & Logic</h4>
+                    <h3>📦 Minecraft Club</h3>
+                    <p>Utilized sandbox systems to design complex procedural environments. Actively explored boolean operations, digital logic gates, and complex automated machinery using Redstone circuits, showcasing a foundational aptitude for digital electronics.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Scientific Inquiry</h4>
+                    <h3>🧪 Chemistry Experiment Club</h3>
+                    <p>Conducted rigorous chemical synthesis and analytical testing. Developed an acute sense for experimental precision, procedural lab safety protocols, and analytical data validation, proving an enduring dedication to scientific methods.</p>
+                </div>
+                <div class="activity-card">
+                    <h4>Discipline & Harmony</h4>
+                    <h3>🏓 Table Tennis Club</h3>
+                    <p>Maintained high-intensity cognitive stamina, sharp tactical execution, and strategic teamwork. Balancing athletic conditioning with rigorous studies cultivated exceptional reflex speeds, absolute focus, and strong physical resilience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOBBIES & PASSIONS SECTION -->
+    <section id="hobbies">
+        <div class="container">
+            <h2 class="section-title">Creative Passions</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎬</div>
+                    <div>
+                        <h3>Visual Arts & Animation</h3>
+                        <p>Combining artistic narrative with digital media. Crafting engaging animations allows me to blend computational timelines, asset rendering, and visual aesthetics, capturing the artistic side of a tech developer.</p>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🛠️</div>
+                    <div>
+                        <h3>Hardware Tinkering</h3>
+                        <p>Constantly assembling custom computer configurations, troubleshooting firmware, and keeping pace with global consumer electronic trends and next-generation microprocessor milestones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-socials">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="mailto:your_email@example.com">Email</a>
+            </div>
+            <p class="footer-text">Designed & Programmed by Daniel © 2026. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerText = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerText = '☰';
+            });
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
